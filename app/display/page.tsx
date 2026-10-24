@@ -755,31 +755,38 @@ export default function DisplayPage() {
       {/* Start splash                                                  */}
       {/* ------------------------------------------------------------ */}
       {!audioStarted && (
-        <button
-          onClick={startShow}
-          className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_center,#1e3a8a_0%,#030614_100%)]"
-        >
-          <div className="sunburst" style={{ opacity: 0.9 }} />
-          <div
-            className="relative rounded-full border-[6px] border-yellow-400 bg-gradient-to-b from-blue-800 to-blue-950 px-14 py-9 shadow-[0_0_90px_rgba(250,204,21,0.45),inset_0_0_40px_rgba(0,0,0,0.8)]"
-            style={{ animation: "splash-title .9s cubic-bezier(0.16,1,0.3,1) both" }}
-          >
-            <div className="shine-layer pointer-events-none absolute inset-0 overflow-hidden rounded-full" />
-            <p className="text-center text-sm font-black tracking-[0.5em] text-yellow-300 drop-shadow">
-              WELCOME TO
-            </p>
-            <h1 className="mt-1 bg-gradient-to-b from-white via-yellow-200 to-amber-500 bg-clip-text text-5xl font-black tracking-tight text-transparent drop-shadow-[0_6px_6px_rgba(0,0,0,0.8)] sm:text-7xl">
-              CHURCH FEUD
-            </h1>
-          </div>
-          <span className="relative mt-10 animate-bounce rounded-full border-4 border-yellow-200 bg-gradient-to-b from-yellow-300 via-amber-400 to-amber-600 px-12 py-5 text-2xl font-black tracking-wider text-blue-950 shadow-[0_10px_35px_rgba(245,158,11,0.6)]">
-            TAP TO START SHOW
-          </span>
-          <span className="relative mt-3 text-xs font-bold tracking-[0.3em] text-blue-300/70 uppercase">
-            Enables Studio Audio & Sound Effects
-          </span>
-        </button>
-      )}
+  <button
+    onClick={startShow}
+    className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_center,#1e3a8a_0%,#0f172a_60%,#020617_100%)] transition-opacity duration-500"
+  >
+    <div className="sunburst pointer-events-none absolute inset-0 opacity-80 mix-blend-screen" />
+
+    <div
+      className="relative flex flex-col items-center justify-center rounded-[100%] border-[8px] border-yellow-400 bg-gradient-to-b from-blue-700 via-blue-900 to-blue-950 px-24 py-16 shadow-[0_0_100px_rgba(250,204,21,0.5),inset_0_0_60px_rgba(0,0,0,0.9)]"
+      style={{ animation: "splash-title 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both" }}
+    >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[100%] bg-gradient-to-b from-white/10 to-transparent" />
+
+      <p className="text-center text-sm font-black tracking-[0.5em] text-yellow-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+        WELCOME TO
+      </p>
+
+      <h1 className="mt-3 flex flex-col items-center bg-gradient-to-b from-white via-yellow-200 to-amber-500 bg-clip-text font-black leading-[0.9] tracking-tight text-transparent drop-shadow-[0_8px_8px_rgba(0,0,0,0.9)]">
+        <span className="text-5xl sm:text-6xl mb-2">CHURCH</span>
+        <span className="text-7xl sm:text-8xl">FAMILY</span>
+        <span className="text-8xl sm:text-9xl">FEUD</span>
+      </h1>
+    </div>
+
+    <div className="relative mt-16 animate-bounce rounded-full border-4 border-yellow-200 bg-gradient-to-b from-yellow-300 via-amber-500 to-amber-700 px-16 py-5 text-3xl font-black tracking-widest text-blue-950 shadow-[0_15px_40px_rgba(245,158,11,0.7),inset_0_4px_10px_rgba(255,255,255,0.5)] transition-transform hover:scale-105">
+      START SHOW
+    </div>
+
+    <span className="relative mt-6 text-sm font-bold tracking-[0.3em] text-blue-300/60 uppercase">
+      Enables Audio & Stage Sound Effects
+    </span>
+  </button>
+)}
 
       {/* ------------------------------------------------------------ */}
       {/* Header: team scores + round bank (fixed height)               */}
