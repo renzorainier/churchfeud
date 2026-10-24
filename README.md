@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Church Feud
 
-## Getting Started
+Real-time, three-screen Family Feud-style game show controller built with Next.js, Firebase Realtime Database, and Framer Motion.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Firebase configuration is kept directly in [firebase.ts](./lib/firebase.ts) for this simple setup. Replace the `PASTE_*_HERE` values with the Firebase Web App configuration from Firebase Console, then enable Realtime Database. For a trusted event network, configure database rules according to your deployment's security requirements; do not expose an open write policy beyond the event.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app provides:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/display` — stage board, scores, answer flips, strike animation, buzzer winner indicator, and sound playback
+- `/admin` — answer reveals, scoring, strikes, buzzer reset, question progression, end-game winner, and new-game reset
+- `/buzzer?team=A` or `/buzzer?team=B` — atomic team buzzer screen
 
-## Learn More
+The display loops `public/background.mp3` as background music after the Start Game overlay is tapped. The admin page controls its volume from 0–100%; this setting is synchronized through Firebase. Add the file directly to the project's `public/` folder (the full path is `public/background.mp3`; it is not uploaded through the browser). The `ding.mp3`, `strike.mp3`, and `buzzer.mp3` files remain local display sound effects.
 
-To learn more about Next.js, take a look at the following resources:
+The initial Firebase shape is created by the first admin update and follows the flat `gameState` and `sfxTrigger` structure described in the product brief. Questions remain local in `data/questions.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Game flow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use **REVEAL** to add an answer's points multiplied by the round multiplier to the bank. Award the bank to a team before ending the game. **END GAME** calculates the winner from the final team scores and shows a full-screen winner announcement on `/display`; tied scores show a tie announcement. **NEW GAME** clears scores and returns to the first question.
