@@ -16,11 +16,11 @@ export default function Home() {
           <p className="text-xs font-black tracking-[0.35em] text-slate-500">PLAYER CONTROLS</p>
           <div className="mt-4 grid gap-5 sm:grid-cols-2">
             <Link className="group rounded-2xl border-2 border-blue-300/60 bg-blue-950/70 p-5 shadow-2xl transition hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-900" href="/buzzer?team=A">
-              <span className="block text-sm font-black tracking-[0.3em] text-blue-200">TEAM A</span>
+              <span className="block text-sm font-black tracking-[0.3em] text-blue-200">TEAM PASTOR CHRIST</span>
               <span className="mt-3 block rounded-full border-4 border-blue-300 bg-blue-600 py-5 text-2xl font-black shadow-[inset_0_-8px_0_rgba(0,0,0,.25),0_8px_0_#172554] transition group-hover:bg-blue-500 group-active:translate-y-1 group-active:shadow-[inset_0_-4px_0_rgba(0,0,0,.25),0_4px_0_#172554]">BUZZER</span>
             </Link>
             <Link className="group rounded-2xl border-2 border-red-300/60 bg-red-950/70 p-5 shadow-2xl transition hover:-translate-y-1 hover:border-red-200 hover:bg-red-900" href="/buzzer?team=B">
-              <span className="block text-sm font-black tracking-[0.3em] text-red-200">TEAM B</span>
+              <span className="block text-sm font-black tracking-[0.3em] text-red-200">TEAM MAAM IVY</span>
               <span className="mt-3 block rounded-full border-4 border-red-300 bg-red-600 py-5 text-2xl font-black shadow-[inset_0_-8px_0_rgba(0,0,0,.25),0_8px_0_#450a0a] transition group-hover:bg-red-500 group-active:translate-y-1 group-active:shadow-[inset_0_-4px_0_rgba(0,0,0,.25),0_4px_0_#450a0a]">BUZZER</span>
             </Link>
           </div>

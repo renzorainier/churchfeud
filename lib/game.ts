@@ -1,4 +1,11 @@
-import type { GameState, SfxTrigger } from "@/lib/types";
+import type { GameState, SfxTrigger, Team } from "@/lib/types";
+
+export const teamNames: Record<Team, string> = {
+  A: "Pastor Christ",
+  B: "Maam Ivy",
+};
+
+export const teamName = (team: Team) => teamNames[team];
 
 export const emptyRevealedAnswers = (count = 6): Record<string, boolean> =>
   Object.fromEntries(Array.from({ length: count }, (_, index) => [index, false]));

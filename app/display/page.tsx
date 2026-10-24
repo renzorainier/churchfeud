@@ -5,6 +5,7 @@ import { BoardCard } from "@/components/BoardCard";
 import { ScoreCard } from "@/components/ScoreCard";
 import { questions } from "@/data/questions";
 import { useGameState } from "@/hooks/useGameState";
+import { teamName } from "@/lib/game";
 
 /* ================================================================== */
 /* Audio engine (Web Audio synth: playful background music + SFX)      */
@@ -346,7 +347,7 @@ export default function DisplayPage() {
     gameState.winner === "tie"
       ? "IT'S A TIE!"
       : gameState.winner
-        ? `TEAM ${gameState.winner} WINS!`
+        ? `TEAM ${teamName(gameState.winner)} WINS!`
         : "";
   const musicVolume = Math.max(0, Math.min(100, gameState.musicVolume));
   const musicVolumeRef = useRef(musicVolume);
@@ -798,7 +799,7 @@ export default function DisplayPage() {
           style={scoreAPulse ? { animation: "score-glow .9s ease-out" } : undefined}
         >
           <ScoreCard
-            team="A"
+            team={teamName("A")}
             score={gameState.teamAScore}
             color="border-blue-400 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
           />
@@ -834,7 +835,7 @@ export default function DisplayPage() {
           style={scoreBPulse ? { animation: "score-glow .9s ease-out" } : undefined}
         >
           <ScoreCard
-            team="B"
+            team={teamName("B")}
             score={gameState.teamBScore}
             color="border-red-400 shadow-[0_0_30px_rgba(248,113,113,0.35)]"
           />
@@ -872,7 +873,7 @@ export default function DisplayPage() {
               <div className="shine-layer pointer-events-none absolute inset-0" />
               <span className="relative text-[clamp(1.4rem,6vh,3.5rem)] leading-none">⚡</span>
               <p className="relative whitespace-nowrap text-[clamp(1.8rem,min(6vw,7.5vh),5rem)] leading-none font-black tracking-wide text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.7)]">
-                TEAM {buzzWinner} BUZZED IN!
+                TEAM {teamName(buzzWinner)} BUZZED IN!
               </p>
               <span className="relative text-[clamp(1.4rem,6vh,3.5rem)] leading-none">⚡</span>
             </div>
@@ -1070,11 +1071,11 @@ export default function DisplayPage() {
             </p>
             <div className="relative mt-[4vh] inline-flex flex-wrap items-center justify-center gap-8 rounded-2xl border-2 border-yellow-400/40 bg-blue-950/80 px-10 py-[2vh] text-[clamp(1.2rem,4vh,2.4rem)] font-black text-white shadow-inner">
               <span className="text-blue-300">
-                TEAM A: <span className="text-white">{gameState.teamAScore}</span>
+                TEAM {teamName("A")}: <span className="text-white">{gameState.teamAScore}</span>
               </span>
               <span className="text-yellow-400">•</span>
               <span className="text-red-300">
-                TEAM B: <span className="text-white">{gameState.teamBScore}</span>
+                TEAM {teamName("B")}: <span className="text-white">{gameState.teamBScore}</span>
               </span>
             </div>
           </div>

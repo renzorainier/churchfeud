@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { claimBuzzer } from "@/lib/firebase-rest";
 import { useGameState } from "@/hooks/useGameState";
+import { teamName } from "@/lib/game";
 import type { Team } from "@/lib/types";
 
 export default function BuzzerPage() {
@@ -30,17 +31,18 @@ function Buzzer() {
 
   const locked = buzzer.locked;
   const teamIsBlue = team === "A";
+  const displayTeamName = teamName(team);
   return (
     <main className={`flex min-h-screen items-center justify-center overflow-hidden p-6 transition-colors ${!locked ? teamIsBlue ? "bg-blue-950" : "bg-red-950" : won ? "bg-emerald-950" : "bg-slate-950"}`}>
       <button
         disabled={locked}
         onClick={buzz}
-        aria-label={`Team ${team} buzzer`}
+        aria-label={`Team ${displayTeamName} buzzer`}
         className={`group flex min-h-[85vh] w-full max-w-2xl flex-col items-center justify-center rounded-[3rem] border-4 p-8 text-center shadow-2xl transition ${
           !locked ? teamIsBlue ? "border-blue-400/40 bg-blue-900/40" : "border-red-400/40 bg-red-900/40" : won ? "border-emerald-300/50 bg-emerald-900/40" : "border-slate-700 bg-slate-900"
         }`}
       >
-        <span className="text-xl font-black tracking-[0.4em] text-white/70">TEAM {team}</span>
+        <span className="text-xl font-black tracking-[0.22em] text-white/70">TEAM {displayTeamName.toUpperCase()}</span>
         <span className={`mt-10 flex aspect-square w-[min(70vw,22rem)] items-center justify-center rounded-full border-[14px] text-4xl font-black shadow-[inset_0_-18px_0_rgba(0,0,0,.3),0_18px_0_rgba(0,0,0,.45),0_0_60px_rgba(255,255,255,.16)] transition sm:text-5xl ${
           !locked ? teamIsBlue ? "border-blue-200 bg-blue-600 group-hover:bg-blue-500 group-active:translate-y-3 group-active:shadow-[inset_0_-8px_0_rgba(0,0,0,.3),0_6px_0_rgba(0,0,0,.45)]" : "border-red-200 bg-red-600 group-hover:bg-red-500 group-active:translate-y-3 group-active:shadow-[inset_0_-8px_0_rgba(0,0,0,.3),0_6px_0_rgba(0,0,0,.45)]" : won ? "border-emerald-200 bg-emerald-500" : "border-slate-600 bg-slate-700"
         }`}>

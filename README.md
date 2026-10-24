@@ -17,6 +17,8 @@ The app provides:
 - `/admin` — answer reveals, scoring, strikes, buzzer reset, question progression, end-game winner, and new-game reset
 - `/buzzer?team=A` or `/buzzer?team=B` — atomic team buzzer screen
 
+Team A is displayed as **Pastor Christ** and Team B is displayed as **Maam Ivy** throughout the landing page, player buzzers, admin controls, and stage display. The internal A/B identifiers remain unchanged so existing Firebase game data and buzzer links continue to work.
+
 The display loops `public/background.mp3` as background music after the Start Game overlay is tapped. The admin page controls its volume from 0–100%; this setting is synchronized through Firebase. Add the file directly to the project's `public/` folder (the full path is `public/background.mp3`; it is not uploaded through the browser). The `ding.mp3`, `strike.mp3`, and `buzzer.mp3` files remain local display sound effects.
 
 The initial Firebase shape is created by the first admin update and follows the flat `gameState` and `sfxTrigger` structure described in the product brief. Questions remain local in `data/questions.ts`.
